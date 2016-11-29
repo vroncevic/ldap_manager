@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# @brief   openLDAP Server Management
+# @brief   openLDAP Server Management (wrapper)
 # @version ver.1.0
 # @date    Mon Aug 24 16:00:00 2015
 # @company Frobas IT Department, www.frobas.com 2015
@@ -11,42 +11,49 @@ UTIL_VERSION=ver.1.0
 UTIL=$UTIL_ROOT/sh-util-srv/$UTIL_VERSION
 UTIL_LOG=$UTIL/log
 
+. $UTIL/bin/devel.sh
+. $UTIL/bin/usage.sh
 . $UTIL/bin/checkroot.sh
 . $UTIL/bin/checktool.sh
-. $UTIL/bin/checkcfg.sh
-. $UTIL/bin/checkop.sh
+. $UTIL/bin/sendmail.sh
 . $UTIL/bin/logging.sh
-. $UTIL/bin/usage.sh
-. $UTIL/bin/devel.sh
+. $UTIL/bin/checkop.sh
+. $UTIL/bin/loadconf.sh
+. $UTIL/bin/loadutilconf.sh
+. $UTIL/bin/progressbar.sh
 
-TOOL_NAME=ldapmanager
-TOOL_VERSION=ver.1.0
-TOOL_HOME=$UTIL_ROOT/$TOOL_NAME/$TOOL_VERSION
-TOOL_CFG=$TOOL_HOME/conf/$TOOL_NAME.cfg
-TOOL_LOG=$TOOL_HOME/log
+LDAPMANAGER_TOOL=ldapmanager
+LDAPMANAGER_VERSION=ver.1.0
+LDAPMANAGER_HOME=$UTIL_ROOT/$LDAPMANAGER_TOOL/$LDAPMANAGER_VERSION
+LDAPMANAGER_CFG=$LDAPMANAGER_HOME/conf/$TOOL_NAME.cfg
+LDAPMANAGER_UTIL_CFG=$LDAPMANAGER_HOME/conf/${LDAPMANAGER_TOOL}_util.cfg
+LDAPMANAGER_LOG=$LDAPMANAGER_HOME/log
 
 declare -A LDAPMANAGER_USAGE=(
-	[TOOL_NAME]="__$TOOL_NAME"
-	[ARG1]="[OPERATION] start | stop | restart | status | version"
-	[EX-PRE]="# Restart openLDAP Server"
-	[EX]="__$TOOL_NAME restart"	
+	[USAGE_TOOL]="__$LDAPMANAGER_TOOL"
+	[USAGE_ARG1]="[OPERATION] start | stop | restart | status | version"
+	[USAGE_EX_PRE]="# Restart openLDAP Server"
+	[USAGE_EX]="__$LDAPMANAGER_TOOL restart"	
 )
 
-declare -A LOG=(
-	[TOOL]="$TOOL_NAME"
-	[FLAG]="info"
-	[PATH]="$TOOL_LOG"
-	[MSG]=""
+declare -A LDAPMANAGER_LOG=(
+	[LOG_TOOL]="$LDAPMANAGER_TOOL"
+	[LOG_FLAG]="info"
+	[LOG_PATH]="$LDAPMANAGER_LOG"
+	[LOG_MSGE]="None"
+)
+
+declare -A PB_STRUCTURE=(
+	[BAR_WIDTH]=50
+	[MAX_PERCENT]=100
+	[SLEEP]=0.01
 )
 
 TOOL_DEBUG="false"
 
-SYSTEMCTL="/usr/bin/systemctl"
-SLAPD="/usr/lib/openldap/slapd"
-OPENLDAP_OP_LIST=( start stop restart status version )
-
 #
 # @brief  Check version of openLDAP server
+# @param  None
 # @retval Success return 0, else 1
 #
 # @usage
@@ -55,18 +62,29 @@ OPENLDAP_OP_LIST=( start stop restart status version )
 # __ldapversion
 # STATUS=$?
 #
-# if [ "$STATUS" -eq "$SUCCESS" ]; then
+# if [ $STATUS -eq $SUCCESS ]; then
 #	# true
 # else
 #	# false
 # fi
 #
 function __ldapversion() {
-	__checktool "$SLAPD"
-	STATUS=$?
-	if [ "$STATUS" -eq "$SUCCESS" ]; then
-	    eval "$SLAPD -VV"
+	local FUNC=${FUNCNAME[0]}
+	local MSG="None"
+	__checktool "$configldapmanagerutil{SLAPD}"
+	local STATUS=$?
+	if [ $STATUS -eq $SUCCESS ]; then
+	    eval "$configldapmanagerutil{SLAPD} -VV"
 		return $SUCCESS
+	fi
+	MSG="Missing external tool $configldapmanagerutil{SLAPD}"
+	if [ "${configldapmanager[LOGGING]}" == "true" ]; then
+		LDAPMANAGER_LOG[LOG_MSGE]=$MSG
+		LDAPMANAGER_LOG[LOG_FLAG]="error"
+		__logging LDAPMANAGER_LOG
+	fi
+	if [ "${configldapmanager[EMAILING]}" == "true" ]; then
+		__sendmail "$MSG" "${configldapmanager[ADMIN_EMAIL]}"
 	fi
 	return $NOT_SUCCESS
 }
@@ -82,24 +100,34 @@ function __ldapversion() {
 # __ldapoperation $OPERATION
 # STATUS=$?
 #
-# if [ "$STATUS" -eq "$SUCCESS" ]; then
+# if [ $STATUS -eq $SUCCESS ]; then
 #	# true
 # else
 #	# false
 # fi
 #
 function __ldapoperation() {
-    OPERATION=$1
+    local OPERATION=$1
     if [ -n "$OPERATION" ]; then
-		__checktool "$SYSTEMCTL"
-		STATUS=$?
-		if [ "$STATUS" -eq "$SUCCESS" ]; then
+		local MSG="None"
+		__checktool "$configldapmanagerutil{SYSTEMCTL}"
+		local STATUS=$?
+		if [ $STATUS -eq $SUCCESS ]; then
 			if [ "$OPERATION" == "version" ]; then
 				__ldapversion
 				return $SUCCESS
 			fi
-			eval "$SYSTEMCTL $OPERATION ldap.service"
+			eval "$configldapmanagerutil{SYSTEMCTL} $OPERATION ldap.service"
         	return $SUCCESS
+		fi
+		MSG="Missing external tool $configldapmanagerutil{SYSTEMCTL}"
+		if [ "${configldapmanager[LOGGING]}" == "true" ]; then
+			LDAPMANAGER_LOG[LOG_MSGE]=$MSG
+			LDAPMANAGER_LOG[LOG_FLAG]="error"
+			__logging LDAPMANAGER_LOG
+		fi
+		if [ "${configldapmanager[EMAILING]}" == "true" ]; then
+			__sendmail "$MSG" "${configldapmanager[ADMIN_EMAIL]}"
 		fi
 		return $NOT_SUCCESS
     fi 
@@ -107,8 +135,14 @@ function __ldapoperation() {
 }
 
 #
-# @brief Main function 
-# @param Value required operation to be done
+# @brief  Main function 
+# @param  Value required operation to be done
+# @retval Function __ldapmanager exit with integer value
+#			0   - tool finished with success operation 
+#			128 - missing argument(s) from cli 
+#			129 - failed to load tool script configuration from file  
+#			130 - failed to load tool script utilities configuration from file
+#           131 - wrong argument (operation)
 #
 # @usage
 # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -117,45 +151,92 @@ function __ldapoperation() {
 # __ldapmanager "$OPERATION"
 #
 function __ldapmanager() {
-    OPERATION=$1
+    local OPERATION=$1
     if [ -n "$OPERATION" ]; then
-		if [ "$TOOL_DEBUG" == "true" ]; then
-			printf "%s\n" "[LDAP Server manager]"
+		local FUNC=${FUNCNAME[0]}
+		local MSG="Loading basic and util configuration"
+		printf "$SEND" "$LDAPMANAGER_TOOL" "$MSG"
+		__progressbar PB_STRUCTURE
+		printf "%s\n\n" ""
+		declare -A configldapmanager=()
+		__loadconf $LDAPMANAGER_CFG configldapmanager
+		local STATUS=$?
+		if [ $STATUS -eq $NOT_SUCCESS ]; then
+			MSG="Failed to load tool script configuration"
+			if [ "${configldapmanager[LOGGING]}" == "true" ]; then
+				LDAPMANAGER_LOG[LOG_MSGE]=$MSG
+				LDAPMANAGER_LOG[LOG_FLAG]="error"
+				__logging LDAPMANAGER_LOG
+			fi
+			if [ "$TOOL_DBG" == "true" ]; then
+				printf "$DSTA" "$LDAPMANAGER_TOOL" "$FUNC" "$MSG"
+			else
+				printf "$SEND" "$LDAPMANAGER_TOOL" "$MSG"
+			fi
+			exit 129
 		fi
+		declare -A configldapmanagerutil=()
+		__loadutilconf $LDAPMANAGER_UTIL_CFG configldapmanagerutil
+		STATUS=$?
+		if [ "$STATUS" -eq "$NOT_SUCCESS" ]; then
+			MSG="Failed to load tool script utilities configuration"
+			if [ "$TOOL_DBG" == "true" ]; then
+				printf "$DSTA" "$LDAPMANAGER_TOOL" "$FUNC" "$MSG"
+			else
+				printf "$SEND" "$LDAPMANAGER_TOOL" "$MSG"
+			fi
+			if [ "${configldapmanager[LOGGING]}" == "true" ]; then
+				LDAPMANAGER_LOG[LOG_MSGE]=$MSG
+				LDAPMANAGER_LOG[LOG_FLAG]="error"
+				__logging LDAPMANAGER_LOG
+			fi
+			exit 130
+		fi
+		OPENLDAP_OP_LIST=( start stop restart status version )
         __checkop "$OPERATION" "${OPENLDAP_OP_LIST[*]}"
         STATUS=$?
-        if [ "$STATUS" -eq "$SUCCESS" ]; then
+        if [ $STATUS -eq $SUCCESS ]; then
             __ldapoperation "$OPERATION"
-            LOG[MSG]="$OPERATION openLDAP Server"
-			if [ "$TOOL_DEBUG" == "true" ]; then
-				printf "%s\n" "[Info] ${LOG[MSG]}"
+            if [ "$TOOL_DBG" == "true" ]; then
+				printf "$DSTA" "$LDAPMANAGER_TOOL" "$FUNC" "Done"
+			else
+				printf "$SEND" "$LDAPMANAGER_TOOL" "Done"
 			fi
-            __logging $LOG
-			if [ "$TOOL_DEBUG" == "true" ]; then
-				printf "%s\n" "[Done]"
+			if [ "${configldapmanager[LOGGING]}" == "true" ]; then
+				LDAPMANAGER_LOG[LOG_MSGE]="Done"
+				LDAPMANAGER_LOG[LOG_FLAG]="info"
+				__logging LDAPMANAGER_LOG
 			fi
 			exit 0
         fi
-        exit 129
+		MSG="Check operation to be done: $OPERATION"
+		if [ "${configldapmanager[LOGGING]}" == "true" ]; then
+			LDAPMANAGER_LOG[LOG_MSGE]=$MSG
+			LDAPMANAGER_LOG[LOG_FLAG]="error"
+			__logging LDAPMANAGER_LOG
+		fi
+        exit 131
     fi 
-    __usage $LDAPMANAGER_USAGE
+    __usage LDAPMANAGER_USAGE
     exit 128
 }
 
 #
-# @brief Main entry point
-# @param required value operation to be done
-# @exitval Script tool atmanger exit with integer value
-#			0   - success operation 
-# 			127 - run as root user
-#			128 - missing argument
-#			129 - wrong argument (operation)
+# @brief   Main entry point
+# @param   Value required operation to be done
+# @exitval Script tool ldapmanager exit with integer value
+#			0   - tool finished with success operation 
+# 			127 - run tool script as root user from cli
+#			128 - missing argument(s) from cli 
+#			129 - failed to load tool script configuration from file  
+#			130 - failed to load tool script utilities configuration from file
+#           131 - wrong argument (operation)
 #
-printf "\n%s\n%s\n\n" "$TOOL_NAME $TOOL_VERSION" "`date`"
+printf "\n%s\n%s\n\n" "$LDAPMANAGER_NAME $LDAPMANAGER_VERSION" "`date`"
 __checkroot
 STATUS=$?
-if [ "$STATUS" -eq "$SUCCESS" ]; then
-	__ldapmanager "$1"
+if [ $STATUS -eq $SUCCESS ]; then
+	__ldapmanager $1
 fi
 
 exit 127
