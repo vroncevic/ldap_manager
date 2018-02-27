@@ -22,7 +22,7 @@ This module requires these other modules and libraries:
 
 ### COPYRIGHT AND LICENCE
 
-Copyright (C) 2018 by https://github.com/vroncevic/ldap_manager
+Copyright (C) 2018 by https://vroncevic.github.io/ldap_manager
 
 This tool is free software; you can redistribute it and/or modify
 it under the same terms as Bash itself, either Bash version 4.2.47 or,
