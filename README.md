@@ -1,8 +1,8 @@
 # Shell script for openLDAP management.
 
-ldap_manager is shell tool for control/operating ldap server.
+***ldap_manager*** is shell tool for control/operating ldap server.
 
-Developed in bash code: 100%.
+Developed in bash code: ***100%***.
 
 The README is used to introduce the modules and provide instructions on
 how to install the modules, any machine dependencies it may have and any
@@ -10,6 +10,17 @@ other information that should be provided before the modules are installed.
 
 [![GitHub issues open](https://img.shields.io/github/issues/vroncevic/ldap_manager.svg)](https://github.com/vroncevic/ldap_manager/issues)
  [![GitHub contributors](https://img.shields.io/github/contributors/vroncevic/ldap_manager.svg)](https://github.com/vroncevic/ldap_manager/graphs/contributors)
+
+<!-- START doctoc -->
+**Table of Contents**
+
+- [Installation](https://github.com/vroncevic/ldap_manager#installation)
+- [Usage](https://github.com/vroncevic/ldap_manager#usage)
+- [Dependencies](https://github.com/vroncevic/ldap_manager#dependencies)
+- [Shell tool structure](https://github.com/vroncevic/ldap_manager#shell-tool-structure)
+- [Docs](https://github.com/vroncevic/ldap_manager#docs)
+- [Copyright and Licence](https://github.com/vroncevic/ldap_manager#copyright-and-licence)
+<!-- END doctoc -->
 
 ### INSTALLATION
 
@@ -25,9 +36,8 @@ cp -R ~/sh_tool/conf/  /root/scripts/ldap_manager/ver.1.0/
 cp -R ~/sh_tool/log/   /root/scripts/ldap_manager/ver.1.0/
 ```
 
+![alt tag](https://raw.githubusercontent.com/vroncevic/ldap_manager/dev/docs/setup_tree.png)
 Or You can use docker to create image/container.
-
-:sparkles:
 
 ### USAGE
 
@@ -50,7 +60,7 @@ This module requires these other modules and libraries:
 
 ### SHELL TOOL STRUCTURE
 
-ldap_manager is based on MOP.
+***ldap_manager*** is based on MOP.
 
 Shell tool structure:
 ```
@@ -74,8 +84,6 @@ More documentation and info at:
 
 * https://ldap_manager.readthedocs.io/en/latest/
 
-:sparkles:
-
 ### COPYRIGHT AND LICENCE
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0) [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
@@ -85,6 +93,4 @@ Copyright (C) 2018 by https://vroncevic.github.io/ldap_manager
 This tool is free software; you can redistribute it and/or modify
 it under the same terms as Bash itself, either Bash version 4.2.47 or,
 at your option, any later version of Bash 4 you may have available.
-
-:sparkles:
 
