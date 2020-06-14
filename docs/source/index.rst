@@ -1,20 +1,88 @@
-.. ldap_manager documentation master file, created by
-   sphinx-quickstart on Wed Apr  1 17:44:05 2020.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
-
-Welcome to ldap_manager's documentation!
-========================================
+LDAP_MANAGER
+-------------
 
 .. toctree::
-   :maxdepth: 2
-   :caption: Contents:
+ :hidden:
+
+ self
 
 
+ldap_manager is shell tool for control/operating ldap server.
 
-Indices and tables
-==================
+Developed in bash code: 100%.
 
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
+The README is used to introduce the tool and provide instructions on
+how to install the tool, any machine dependencies it may have and any
+other information that should be provided before the tool is installed.
+
+|GitHub issues| |Documentation Status| |GitHub contributors|
+
+.. |GitHub issues| image:: https://img.shields.io/github/issues/vroncevic/ldap_manager.svg
+   :target: https://github.com/vroncevic/ldap_manager/issues
+
+.. |GitHub contributors| image:: https://img.shields.io/github/contributors/vroncevic/ldap_manager.svg
+   :target: https://github.com/vroncevic/ldap_manager/graphs/contributors
+
+.. |Documentation Status| image:: https://readthedocs.org/projects/ldap_manager/badge/?version=latest
+   :target: https://ldap_manager.readthedocs.io/projects/ldap_manager/en/latest/?badge=latest
+
+INSTALLATION
+-------------
+Navigate to release `page`_ download and extract release archive.
+
+.. _page: https://github.com/vroncevic/ldap_manager/releases
+
+To install this set of modules type the following:
+
+.. code-block:: bash
+
+   tar xvzf ldap_manager-x.y.z.tar.gz
+   cd ldap_manager-x.y.z
+   cp -R ~/sh_tool/bin/   /root/scripts/ldap_manager/ver.1.0/
+   cp -R ~/sh_tool/conf/  /root/scripts/ldap_manager/ver.1.0/
+   cp -R ~/sh_tool/log/   /root/scripts/ldap_manager/ver.1.0/
+
+DEPENDENCIES
+-------------
+This tool requires these other modules and libraries:
+
+.. code-block:: bash
+
+   sh_util https://github.com/vroncevic/sh_util
+
+SHELL TOOL STRUCTURE
+---------------------
+ldap_manager is based on MOP.
+
+Shell tool structure:
+
+.. code-block:: bash
+
+   .
+   ├── bin/
+   │   ├── ldap_manager.sh
+   │   ├── openldap_operation.sh
+   │   └── openldap_version.sh
+   ├── conf/
+   │   ├── ldap_manager.cfg
+   │   └── ldap_manager_util.cfg
+   └── log/
+       └── ldap_manager.log
+
+COPYRIGHT AND LICENCE
+----------------------
+
+|License: GPL v3| |License: Apache 2.0|
+
+.. |License: GPL v3| image:: https://img.shields.io/badge/License-GPLv3-blue.svg
+   :target: https://www.gnu.org/licenses/gpl-3.0
+
+.. |License: Apache 2.0| image:: https://img.shields.io/badge/License-Apache%202.0-blue.svg
+   :target: https://opensource.org/licenses/Apache-2.0
+
+Copyright (C) 2018 by https://vroncevic.github.io/ldap_manager
+
+This tool is free software; you can redistribute it and/or modify it
+under the same terms as Bash itself, either Bash version 4.2.47 or,
+at your option, any later version of Bash 4 you may have available.
+
