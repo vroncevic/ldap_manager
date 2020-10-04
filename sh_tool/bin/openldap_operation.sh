@@ -9,11 +9,11 @@
 
 .    ${LDAP_MANAGER_HOME}/bin/openldap_version.sh
 
-declare -A OPENLDAP_OPERATION_USAGE=(
-    [USAGE_TOOL]="__openldap_operation"
-    [USAGE_ARG1]="[OPERATION] start | stop | restart | status | version"
-    [USAGE_EX_PRE]="# Restart openLDAP Server"
-    [USAGE_EX]="__openldap_operation restart"
+declare -A OPENLDAP_OPERATION_Usage=(
+    [Usage_TOOL]="__openldap_operation"
+    [Usage_ARG1]="[OPERATION] start | stop | restart | status | version"
+    [Usage_EX_PRE]="# Restart openLDAP Server"
+    [Usage_EX]="__openldap_operation restart"
 )
 
 #
@@ -68,7 +68,7 @@ function __openldap_operation {
         info_debug_message_end "Done" "$FUNC" "$LDAP_MANAGER_TOOL"
         return $SUCCESS
     fi
-    usage OPENLDAP_OPERATION_USAGE
+    usage OPENLDAP_OPERATION_Usage
     return $NOT_SUCCESS
 }
 
