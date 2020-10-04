@@ -30,11 +30,11 @@ LDAP_MANAGER_LOG=${LDAP_MANAGER_HOME}/log
 
 .    ${LDAP_MANAGER_HOME}/bin/openldap_operation.sh
 
-declare -A LDAP_MANAGER_USAGE=(
-    [USAGE_TOOL]="${LDAP_MANAGER_TOOL}"
-    [USAGE_ARG1]="[OPERATION] start | stop | restart | status | version"
-    [USAGE_EX_PRE]="# Restart openLDAP Server"
-    [USAGE_EX]="${LDAP_MANAGER_TOOL} restart"
+declare -A LDAP_MANAGER_Usage=(
+    [Usage_TOOL]="${LDAP_MANAGER_TOOL}"
+    [Usage_ARG1]="[OPERATION] start | stop | restart | status | version"
+    [Usage_EX_PRE]="# Restart openLDAP Server"
+    [Usage_EX]="${LDAP_MANAGER_TOOL} restart"
 )
 
 declare -A LDAP_MANAGER_LOGGING=(
@@ -111,7 +111,7 @@ function __ldap_manager {
         info_debug_message_end "$MSG" "$FUNC" "$LDAP_MANAGER_TOOL"
         exit 130
     fi
-    usage LDAP_MANAGER_USAGE
+    usage LDAP_MANAGER_Usage
     exit 128
 }
 
