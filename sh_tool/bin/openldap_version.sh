@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 # @brief   Show version of openldap server
-# @version ver.1.0.0
+# @version ver.1.0
 # @date    Mon Aug 24 16:00:00 2015
 # @company Frobas IT Department, www.frobas.com 2015
 # @author  Vladimir Roncevic <vladimir.roncevic@frobas.com>

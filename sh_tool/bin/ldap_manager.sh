@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 # @brief   openLDAP Server Management (wrapper)
-# @version ver.1.0.0
+# @version ver.1.0
 # @date    Mon Aug 24 16:00:00 2015
 # @company Frobas IT Department, www.frobas.com 2015
 # @author  Vladimir Roncevic <vladimir.roncevic@frobas.com>
@@ -30,7 +30,7 @@ LDAP_MANAGER_LOG=${LDAP_MANAGER_HOME}/log
 
 .    ${LDAP_MANAGER_HOME}/bin/openldap_operation.sh
 
-declare -A LDAP_MANAGER_Usage=(
+declare -A LDAP_MANAGER_USAGE=(
     [Usage_TOOL]="${LDAP_MANAGER_TOOL}"
     [Usage_ARG1]="[OPERATION] start | stop | restart | status | version"
     [Usage_EX_PRE]="# Restart openLDAP Server"
@@ -111,7 +111,7 @@ function __ldap_manager {
         info_debug_message_end "$MSG" "$FUNC" "$LDAP_MANAGER_TOOL"
         exit 130
     fi
-    usage LDAP_MANAGER_Usage
+    usage LDAP_MANAGER_USAGE
     exit 128
 }
 
