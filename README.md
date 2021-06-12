@@ -1,3 +1,5 @@
+<img align="right" src="https://raw.githubusercontent.com/vroncevic/ldap_manager/dev/docs/ldap_manager_logo.png" width="25%">
+
 # Shell script for openLDAP management
 
 **ldap_manager** is shell tool for control/operating ldap server.
@@ -32,11 +34,11 @@ Navigate to release **[page](https://github.com/vroncevic/ldap_manager/releases)
 To install **ldap_manager** type the following:
 
 ```
-tar xvzf ldap_manager-x.y.z.tar.gz
-cd ldap_manager-x.y.z
-cp -R ~/sh_tool/bin/   /root/scripts/ldap_manager/ver.1.0/
-cp -R ~/sh_tool/conf/  /root/scripts/ldap_manager/ver.1.0/
-cp -R ~/sh_tool/log/   /root/scripts/ldap_manager/ver.1.0/
+tar xvzf ldap_manager-x.y.tar.gz
+cd ldap_manager-x.y
+cp -R ~/sh_tool/bin/   /root/scripts/ldap_manager/ver.x.y/
+cp -R ~/sh_tool/conf/  /root/scripts/ldap_manager/ver.x.y/
+cp -R ~/sh_tool/log/   /root/scripts/ldap_manager/ver.x.y/
 ```
 
 ![alt tag](https://raw.githubusercontent.com/vroncevic/ldap_manager/dev/docs/setup_tree.png)
@@ -49,7 +51,7 @@ Or You can use docker to create image/container.
 
 ```
 # Create symlink for shell tool
-ln -s /root/scripts/ldap_manager/ver.1.0/bin/ldap_manager.sh /root/bin/ldap_manager
+ln -s /root/scripts/ldap_manager/ver.x.y/bin/ldap_manager.sh /root/bin/ldap_manager
 
 # Setting PATH
 export PATH=${PATH}:/root/bin/
@@ -69,7 +71,7 @@ ldap_manager version
 
 Code structure:
 ```
-.
+sh_tool/
 ├── bin/
 │   ├── ldap_manager.sh
 │   ├── openldap_operation.sh
@@ -93,7 +95,7 @@ More documentation and info at:
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0) [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
-Copyright (C) 2015 by [vroncevic.github.io/ldap_manager](https://vroncevic.github.io/ldap_manager)
+Copyright (C) 2016 by [vroncevic.github.io/ldap_manager](https://vroncevic.github.io/ldap_manager)
 
 **ldap_manager** is free software; you can redistribute it and/or modify
 it under the same terms as Bash itself, either Bash version 4.2.47 or,

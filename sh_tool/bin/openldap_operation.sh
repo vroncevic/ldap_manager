@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 # @brief   Executing operation with openldap service
-# @version ver.1.0.0
+# @version ver.1.0
 # @date    Mon Aug 24 16:00:00 2015
 # @company Frobas IT Department, www.frobas.com 2015
 # @author  Vladimir Roncevic <vladimir.roncevic@frobas.com>
@@ -9,7 +9,7 @@
 
 .    ${LDAP_MANAGER_HOME}/bin/openldap_version.sh
 
-declare -A OPENLDAP_OPERATION_Usage=(
+declare -A OPENLDAP_OPERATION_USAGE=(
     [Usage_TOOL]="__openldap_operation"
     [Usage_ARG1]="[OPERATION] start | stop | restart | status | version"
     [Usage_EX_PRE]="# Restart openLDAP Server"
@@ -68,7 +68,7 @@ function __openldap_operation {
         info_debug_message_end "Done" "$FUNC" "$LDAP_MANAGER_TOOL"
         return $SUCCESS
     fi
-    usage OPENLDAP_OPERATION_Usage
+    usage OPENLDAP_OPERATION_USAGE
     return $NOT_SUCCESS
 }
 
