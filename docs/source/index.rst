@@ -33,11 +33,16 @@ other information that should be provided before the tool is installed.
 Installation
 -------------
 
+|Debian Linux OS|
+
+.. |Debian Linux OS| image:: https://raw.githubusercontent.com/vroncevic/ldap_manager/dev/docs/debtux.png
+   :target: https://www.debian.org
+
 Navigate to release `page`_ download and extract release archive.
 
 .. _page: https://github.com/vroncevic/ldap_manager/releases
 
-To install **ldap_manager** type the following:
+To install **ldap_manager** type the following
 
 .. code-block:: bash
 
@@ -57,7 +62,7 @@ Or You can use Docker to create image/container.
 Dependencies
 -------------
 
-**ldap_manager** requires next modules and libraries:
+**ldap_manager** requires next modules and libraries
 
 * sh_util `https://github.com/vroncevic/sh_util <https://github.com/vroncevic/sh_util>`_
 
@@ -66,17 +71,20 @@ Shell tool structure
 
 **ldap_manager** is based on MOP.
 
-Code structure:
+Shell tool structure
 
 .. code-block:: bash
 
    sh_tool/
    ├── bin/
+   │   ├── center.sh
+   │   ├── display_logo.sh
    │   ├── ldap_manager.sh
    │   ├── openldap_operation.sh
    │   └── openldap_version.sh
    ├── conf/
    │   ├── ldap_manager.cfg
+   │   ├── ldap_manager.logo
    │   └── ldap_manager_util.cfg
    └── log/
        └── ldap_manager.log
