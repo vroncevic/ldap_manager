@@ -1,19 +1,19 @@
 #!/bin/bash
 #
-# @brief   Executing operation with openldap service
-# @version ver.1.0
-# @date    Mon Aug 24 16:00:00 2015
-# @company Frobas IT Department, www.frobas.com 2015
-# @author  Vladimir Roncevic <vladimir.roncevic@frobas.com>
+# @brief   openLDAP manager
+# @version ver.2.0
+# @date    Tue 30 Nov 2021 08:25:14 PM CET
+# @company None, free software to use 2021
+# @author  Vladimir Roncevic <elektron.ronca@gmail.com>
 #
 
 .    ${LDAP_MANAGER_HOME}/bin/openldap_version.sh
 
 declare -A OPENLDAP_OPERATION_USAGE=(
-    [Usage_TOOL]="__openldap_operation"
-    [Usage_ARG1]="[OPERATION] start | stop | restart | status | version"
-    [Usage_EX_PRE]="# Restart openLDAP Server"
-    [Usage_EX]="__openldap_operation restart"
+    [USAGE_TOOL]="__openldap_operation"
+    [USAGE_ARG1]="[OPERATION] start | stop | restart | status | version"
+    [USAGE_EX_PRE]="# Restart openLDAP Server"
+    [USAGE_EX]="__openldap_operation restart"
 )
 
 #

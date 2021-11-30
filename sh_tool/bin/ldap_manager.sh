@@ -1,10 +1,10 @@
 #!/bin/bash
 #
-# @brief   openLDAP Server Management (wrapper)
-# @version ver.1.0
-# @date    Mon Aug 24 16:00:00 2015
-# @company Frobas IT Department, www.frobas.com 2015
-# @author  Vladimir Roncevic <vladimir.roncevic@frobas.com>
+# @brief   openLDAP manager
+# @version ver.2.0
+# @date    Tue 30 Nov 2021 08:25:14 PM CET
+# @company None, free software to use 2021
+# @author  Vladimir Roncevic <elektron.ronca@gmail.com>
 #
 UTIL_ROOT=/root/scripts
 UTIL_VERSION=ver.1.0
@@ -22,19 +22,25 @@ UTIL_LOG=${UTIL}/log
 .    ${UTIL}/bin/progress_bar.sh
 
 LDAP_MANAGER_TOOL=ldap_manager
-LDAP_MANAGER_VERSION=ver.1.0
+LDAP_MANAGER_VERSION=ver.2.0
 LDAP_MANAGER_HOME=${UTIL_ROOT}/${LDAP_MANAGER_TOOL}/${LDAP_MANAGER_VERSION}
 LDAP_MANAGER_CFG=${LDAP_MANAGER_HOME}/conf/${LDAP_MANAGER_TOOL}.cfg
 LDAP_MANAGER_UTIL_CFG=${LDAP_MANAGER_HOME}/conf/${LDAP_MANAGER_TOOL}_util.cfg
+LDAP_MANAGER_LOGO=${LDAP_MANAGER_HOME}/conf/${LDAP_MANAGER_TOOL}.logo
 LDAP_MANAGER_LOG=${LDAP_MANAGER_HOME}/log
 
+tabs 4
+CONSOLE_WIDTH=$(stty size | awk '{print $2}')
+
+.    ${LDAP_MANAGER_HOME}/bin/center.sh
+.    ${LDAP_MANAGER_HOME}/bin/display_logo.sh
 .    ${LDAP_MANAGER_HOME}/bin/openldap_operation.sh
 
 declare -A LDAP_MANAGER_USAGE=(
-    [Usage_TOOL]="${LDAP_MANAGER_TOOL}"
-    [Usage_ARG1]="[OPERATION] start | stop | restart | status | version"
-    [Usage_EX_PRE]="# Restart openLDAP Server"
-    [Usage_EX]="${LDAP_MANAGER_TOOL} restart"
+    [USAGE_TOOL]="${LDAP_MANAGER_TOOL}"
+    [USAGE_ARG1]="[OPERATION] start | stop | restart | status | version"
+    [USAGE_EX_PRE]="# Restart openLDAP Server"
+    [USAGE_EX]="${LDAP_MANAGER_TOOL} restart"
 )
 
 declare -A LDAP_MANAGER_LOGGING=(
@@ -71,6 +77,7 @@ TOOL_NOTIFY="false"
 #
 function __ldap_manager {
     local OP=$1
+    display_logo
     if [ -n "${OP}" ]; then
         local FUNC=${FUNCNAME[0]} MSG="None"
         local STATUS_CONF STATUS_CONF_UTIL STATUS
@@ -133,4 +140,3 @@ if [ $STATUS -eq $SUCCESS ]; then
 fi
 
 exit 127
-

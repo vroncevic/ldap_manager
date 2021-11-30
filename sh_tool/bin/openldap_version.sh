@@ -1,10 +1,10 @@
 #!/bin/bash
 #
-# @brief   Show version of openldap server
-# @version ver.1.0
-# @date    Mon Aug 24 16:00:00 2015
-# @company Frobas IT Department, www.frobas.com 2015
-# @author  Vladimir Roncevic <vladimir.roncevic@frobas.com>
+# @brief   openLDAP manager
+# @version ver.2.0
+# @date    Tue 30 Nov 2021 08:25:14 PM CET
+# @company None, free software to use 2021
+# @author  Vladimir Roncevic <elektron.ronca@gmail.com>
 #
 
 #

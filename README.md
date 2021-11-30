@@ -29,9 +29,11 @@ other information that should be provided before the modules are installed.
 
 ### Installation
 
+![Debian Linux OS](https://raw.githubusercontent.com/vroncevic/ldap_manager/dev/docs/debtux.png)
+
 Navigate to release **[page](https://github.com/vroncevic/ldap_manager/releases)** download and extract release archive.
 
-To install **ldap_manager** type the following:
+To install **ldap_manager** type the following
 
 ```
 tar xvzf ldap_manager-x.y.tar.gz
@@ -41,7 +43,36 @@ cp -R ~/sh_tool/conf/  /root/scripts/ldap_manager/ver.x.y/
 cp -R ~/sh_tool/log/   /root/scripts/ldap_manager/ver.x.y/
 ```
 
-![alt tag](https://raw.githubusercontent.com/vroncevic/ldap_manager/dev/docs/setup_tree.png)
+Self generated setup script and execution
+```
+./ldap_manager_setup.sh
+
+[setup] installing App/Tool/Script ldap_manager
+	Tue 30 Nov 2021 08:46:52 PM CET
+[setup] clean up App/Tool/Script structure
+[setup] copy App/Tool/Script structure
+[setup] remove github editor configuration files
+[setup] set App/Tool/Script permission
+[setup] create symbolic link of App/Tool/Script
+[setup] done
+
+/root/scripts/ldap_manager/ver.2.0/
+├── bin/
+│   ├── center.sh
+│   ├── display_logo.sh
+│   ├── ldap_manager.sh
+│   ├── openldap_operation.sh
+│   └── openldap_version.sh
+├── conf/
+│   ├── ldap_manager.cfg
+│   ├── ldap_manager.logo
+│   └── ldap_manager_util.cfg
+└── log/
+    └── ldap_manager.log
+
+3 directories, 9 files
+lrwxrwxrwx 1 root root 54 Nov 30 20:46 /root/bin/ldap_manager -> /root/scripts/ldap_manager/ver.2.0/bin/ldap_manager.sh
+```
 
 Or You can use docker to create image/container.
 
@@ -57,27 +88,55 @@ ln -s /root/scripts/ldap_manager/ver.x.y/bin/ldap_manager.sh /root/bin/ldap_mana
 export PATH=${PATH}:/root/bin/
 
 # Control/operating ldap server
-ldap_manager version
+ldap_manager
+
+ldap_manager ver.2.0
+Tue 30 Nov 2021 08:48:16 PM CET
+
+[check_root] Check permission for current session? [ok]
+[check_root] Done
+
+	                                                                   
+	 _     _                                                           
+	| | __| | __ _ _ __    _ __ ___   __ _ _ __   __ _  __ _  ___ _ __ 
+	| |/ _` |/ _` | '_ \  | '_ ` _ \ / _` | '_ \ / _` |/ _` |/ _ \ '__|
+	| | (_| | (_| | |_) | | | | | | | (_| | | | | (_| | (_| |  __/ |   
+	|_|\__,_|\__,_| .__/  |_| |_| |_|\__,_|_| |_|\__,_|\__, |\___|_|   
+	              |_|                                  |___/           
+	                                                                   
+		Info   github.io/ldap_manager ver.2.0 
+		Issue  github.io/issue
+		Author vroncevic.github.io
+
+  [USAGE] ldap_manager [OPTIONS]
+  [OPTIONS]
+  [OPERATION] start | stop | restart | status | version
+  # Restart openLDAP Server
+  ldap_manager restart
+  [help | h] print this option
 ```
 
 ### Dependencies
 
-**ldap_manager** requires next modules and libraries:
+**ldap_manager** requires next modules and libraries
 * sh_util [https://github.com/vroncevic/sh_util](https://github.com/vroncevic/sh_util)
 
 ### Shell tool structure
 
 **ldap_manager** is based on MOP.
 
-Code structure:
+Shell tool structure
 ```
 sh_tool/
 ├── bin/
+│   ├── center.sh
+│   ├── display_logo.sh
 │   ├── ldap_manager.sh
 │   ├── openldap_operation.sh
 │   └── openldap_version.sh
 ├── conf/
 │   ├── ldap_manager.cfg
+│   ├── ldap_manager.logo
 │   └── ldap_manager_util.cfg
 └── log/
     └── ldap_manager.log
@@ -87,7 +146,7 @@ sh_tool/
 
 [![Documentation Status](https://readthedocs.org/projects/ldap_manager/badge/?version=latest)](https://ldap_manager.readthedocs.io/projects/ldap_manager/en/latest/?badge=latest)
 
-More documentation and info at:
+More documentation and info at
 * [https://ldap_manager.readthedocs.io/en/latest/](https://ldap_manager.readthedocs.io/en/latest/)
 * [https://www.gnu.org/software/bash/manual/](https://www.gnu.org/software/bash/manual/)
 
