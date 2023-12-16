@@ -7,8 +7,8 @@ Developed in `bash <https://en.wikipedia.org/wiki/Bash_(Unix_shell)>`_ code: **1
 
 |GitHub shell checker|
 
-.. |GitHub shell checker| image:: https://github.com/vroncevic/ldap_manager/workflows/ldap_manager%20shell%20checker/badge.svg
-   :target: https://github.com/vroncevic/ldap_manager/actions?query=workflow%3A%22ldap_manager+shell+checker%22
+.. |GitHub shell checker| image:: https://github.com/vroncevic/ldap_manager/actions/workflows/ldap_manager_shell_checker.yml/badge.svg
+   :target: https://github.com/vroncevic/ldap_manager/actions/workflows/ldap_manager_shell_checker.yml
 
 The README is used to introduce the tool and provide instructions on
 how to install the tool, any machine dependencies it may have and any
@@ -22,8 +22,8 @@ other information that should be provided before the tool is installed.
 .. |GitHub contributors| image:: https://img.shields.io/github/contributors/vroncevic/ldap_manager.svg
    :target: https://github.com/vroncevic/ldap_manager/graphs/contributors
 
-.. |Documentation Status| image:: https://readthedocs.org/projects/ldap_manager/badge/?version=latest
-   :target: https://ldap_manager.readthedocs.io/projects/ldap_manager/en/latest/?badge=latest
+.. |Documentation Status| image:: https://readthedocs.org/projects/ldap-manager/badge/?version=latest
+   :target: https://ldap-manager.readthedocs.io/projects/ldap_manager/en/latest/?badge=latest
 
 .. toctree::
     :hidden:
@@ -53,11 +53,6 @@ To install **ldap_manager** type the following
    cp -R ~/sh_tool/log/   /root/scripts/ldap_manager/ver.x.y/
 
 Or You can use Docker to create image/container.
-
-|GitHub docker checker|
-
-.. |GitHub docker checker| image:: https://github.com/vroncevic/ldap_manager/workflows/ldap_manager%20docker%20checker/badge.svg
-   :target: https://github.com/vroncevic/ldap_manager/actions?query=workflow%3A%22ldap_manager+docker+checker%22
 
 Dependencies
 -------------
@@ -100,7 +95,7 @@ Copyright and licence
 .. |License: Apache 2.0| image:: https://img.shields.io/badge/License-Apache%202.0-blue.svg
    :target: https://opensource.org/licenses/Apache-2.0
 
-Copyright (C) 2016 by `vroncevic.github.io/ldap_manager <https://vroncevic.github.io/ldap_manager>`_
+Copyright (C) 2016 - 2024 by `vroncevic.github.io/ldap_manager <https://vroncevic.github.io/ldap_manager>`_
 
 **ldap_manager** is free software; you can redistribute it and/or modify it
 under the same terms as Bash itself, either Bash version 4.2.47 or,
