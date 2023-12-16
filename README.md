@@ -6,7 +6,7 @@
 
 Developed in **[bash](https://en.wikipedia.org/wiki/Bash_(Unix_shell))** code: **100%**.
 
-[![ldap_manager shell checker](https://github.com/vroncevic/ldap_manager/workflows/ldap_manager%20shell%20checker/badge.svg)](https://github.com/vroncevic/ldap_manager/actions?query=workflow%3A%22ldap_manager+shell+checker%22)
+[![ldap_manager_shell_checker](https://github.com/vroncevic/ldap_manager/actions/workflows/ldap_manager_shell_checker.yml/badge.svg)](https://github.com/vroncevic/ldap_manager/actions/workflows/ldap_manager_shell_checker.yml)
 
 The README is used to introduce the modules and provide instructions on
 how to install the modules, any machine dependencies it may have and any
@@ -76,8 +76,6 @@ lrwxrwxrwx 1 root root 54 Nov 30 20:46 /root/bin/ldap_manager -> /root/scripts/l
 
 Or You can use docker to create image/container.
 
-[![ldap_manager docker checker](https://github.com/vroncevic/ldap_manager/workflows/ldap_manager%20docker%20checker/badge.svg)](https://github.com/vroncevic/ldap_manager/actions?query=workflow%3A%22ldap_manager+docker+checker%22)
-
 ### Usage
 
 ```
@@ -96,13 +94,17 @@ Tue 30 Nov 2021 08:48:16 PM CET
 [check_root] Check permission for current session? [ok]
 [check_root] Done
 
-	                                                                   
-	 _     _                                                           
-	| | __| | __ _ _ __    _ __ ___   __ _ _ __   __ _  __ _  ___ _ __ 
-	| |/ _` |/ _` | '_ \  | '_ ` _ \ / _` | '_ \ / _` |/ _` |/ _ \ '__|
-	| | (_| | (_| | |_) | | | | | | | (_| | | | | (_| | (_| |  __/ |   
-	|_|\__,_|\__,_| .__/  |_| |_| |_|\__,_|_| |_|\__,_|\__, |\___|_|   
-	              |_|                                  |___/           
+                                                                                                        
+    ██      ██                                                                                          
+   ░██     ░██                                                                                          
+   ░██     ░██  ██████   ██████        ██████████   ██████   ███████   ██████    █████   █████  ██████  
+   ░██  ██████ ░░░░░░██ ░██░░░██      ░░██░░██░░██ ░░░░░░██ ░░██░░░██ ░░░░░░██  ██░░░██ ██░░░██░░██░░█  
+   ░██ ██░░░██  ███████ ░██  ░██       ░██ ░██ ░██  ███████  ░██  ░██  ███████ ░██  ░██░███████ ░██ ░   
+   ░██░██  ░██ ██░░░░██ ░██████        ░██ ░██ ░██ ██░░░░██  ░██  ░██ ██░░░░██ ░░██████░██░░░░  ░██     
+   ███░░██████░░████████░██░░░   █████ ███ ░██ ░██░░████████ ███  ░██░░████████ ░░░░░██░░██████░███     
+  ░░░  ░░░░░░  ░░░░░░░░ ░██     ░░░░░ ░░░  ░░  ░░  ░░░░░░░░ ░░░   ░░  ░░░░░░░░   █████  ░░░░░░ ░░░      
+                        ░░                                                      ░░░░░                   
+                                                                                                        
 	                                                                   
 		Info   github.io/ldap_manager ver.2.0 
 		Issue  github.io/issue
@@ -144,17 +146,17 @@ sh_tool/
 
 ### Docs
 
-[![Documentation Status](https://readthedocs.org/projects/ldap_manager/badge/?version=latest)](https://ldap_manager.readthedocs.io/projects/ldap_manager/en/latest/?badge=latest)
+[![Documentation Status](https://readthedocs.org/projects/ldap_manager/badge/?version=latest)](https://ldap-manager.readthedocs.io/projects/ldap_manager/en/latest/?badge=latest)
 
 More documentation and info at
-* [https://ldap_manager.readthedocs.io/en/latest/](https://ldap_manager.readthedocs.io/en/latest/)
+* [https://ldap_manager.readthedocs.io/en/latest/](https://ldap-manager.readthedocs.io/en/latest/)
 * [https://www.gnu.org/software/bash/manual/](https://www.gnu.org/software/bash/manual/)
 
 ### Copyright and licence
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0) [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
-Copyright (C) 2016 by [vroncevic.github.io/ldap_manager](https://vroncevic.github.io/ldap_manager)
+Copyright (C) 2016 - 2024 by [vroncevic.github.io/ldap_manager](https://vroncevic.github.io/ldap_manager)
 
 **ldap_manager** is free software; you can redistribute it and/or modify
 it under the same terms as Bash itself, either Bash version 4.2.47 or,
