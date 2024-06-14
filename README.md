@@ -1,6 +1,6 @@
-<img align="right" src="https://raw.githubusercontent.com/vroncevic/ldap_manager/dev/docs/ldap_manager_logo.png" width="25%">
-
 # Shell script for openLDAP management
+
+<img align="right" src="https://raw.githubusercontent.com/vroncevic/ldap_manager/dev/docs/ldap_manager_logo.png" width="25%">
 
 **ldap_manager** is shell tool for control/operating ldap server.
 
@@ -35,7 +35,7 @@ Navigate to release **[page](https://github.com/vroncevic/ldap_manager/releases)
 
 To install **ldap_manager** type the following
 
-```
+```bash
 tar xvzf ldap_manager-x.y.tar.gz
 cd ldap_manager-x.y
 cp -R ~/sh_tool/bin/   /root/scripts/ldap_manager/ver.x.y/
@@ -44,7 +44,8 @@ cp -R ~/sh_tool/log/   /root/scripts/ldap_manager/ver.x.y/
 ```
 
 Self generated setup script and execution
-```
+
+```bash
 ./ldap_manager_setup.sh
 
 [setup] installing App/Tool/Script ldap_manager
@@ -78,7 +79,7 @@ Or You can use docker to create image/container.
 
 ### Usage
 
-```
+```bash
 # Create symlink for shell tool
 ln -s /root/scripts/ldap_manager/ver.x.y/bin/ldap_manager.sh /root/bin/ldap_manager
 
@@ -128,7 +129,8 @@ Tue 30 Nov 2021 08:48:16 PM CET
 **ldap_manager** is based on MOP.
 
 Shell tool structure
-```
+
+```bash
 sh_tool/
 ├── bin/
 │   ├── center.sh
