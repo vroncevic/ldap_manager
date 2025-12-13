@@ -36,11 +36,11 @@ Navigate to release **[page](https://github.com/vroncevic/ldap_manager/releases)
 To install **ldap_manager** type the following
 
 ```bash
-tar xvzf ldap_manager-x.y.tar.gz
-cd ldap_manager-x.y
-cp -R ~/sh_tool/bin/   /root/scripts/ldap_manager/ver.x.y/
-cp -R ~/sh_tool/conf/  /root/scripts/ldap_manager/ver.x.y/
-cp -R ~/sh_tool/log/   /root/scripts/ldap_manager/ver.x.y/
+tar xvzf ldap_manager-3.0.tar.gz
+cd ldap_manager-3.0
+cp -R ~/sh_tool/bin/   /root/scripts/ldap_manager/ver.3.0/
+cp -R ~/sh_tool/conf/  /root/scripts/ldap_manager/ver.3.0/
+cp -R ~/sh_tool/log/   /root/scripts/ldap_manager/ver.3.0/
 ```
 
 Self generated setup script and execution
@@ -49,7 +49,7 @@ Self generated setup script and execution
 ./ldap_manager_setup.sh
 
 [setup] installing App/Tool/Script ldap_manager
-	Tue 30 Nov 2021 08:46:52 PM CET
+	Sat Dec 13 08:27:42 AM CET 2025
 [setup] clean up App/Tool/Script structure
 [setup] copy App/Tool/Script structure
 [setup] remove github editor configuration files
@@ -57,10 +57,8 @@ Self generated setup script and execution
 [setup] create symbolic link of App/Tool/Script
 [setup] done
 
-/root/scripts/ldap_manager/ver.2.0/
+/root/scripts/ldap_manager/ver.3.0/
 ├── bin/
-│   ├── center.sh
-│   ├── display_logo.sh
 │   ├── ldap_manager.sh
 │   ├── openldap_operation.sh
 │   └── openldap_version.sh
@@ -71,8 +69,8 @@ Self generated setup script and execution
 └── log/
     └── ldap_manager.log
 
-3 directories, 9 files
-lrwxrwxrwx 1 root root 54 Nov 30 20:46 /root/bin/ldap_manager -> /root/scripts/ldap_manager/ver.2.0/bin/ldap_manager.sh
+4 directories, 7 files
+lrwxrwxrwx 1 root root 54 Dec 13 08:27 /root/bin/ldap_manager -> /root/scripts/ldap_manager/ver.3.0/bin/ldap_manager.sh
 ```
 
 Or You can use docker to create image/container.
@@ -81,7 +79,7 @@ Or You can use docker to create image/container.
 
 ```bash
 # Create symlink for shell tool
-ln -s /root/scripts/ldap_manager/ver.x.y/bin/ldap_manager.sh /root/bin/ldap_manager
+ln -s /root/scripts/ldap_manager/ver.3.0/bin/ldap_manager.sh /root/bin/ldap_manager
 
 # Setting PATH
 export PATH=${PATH}:/root/bin/
@@ -89,7 +87,7 @@ export PATH=${PATH}:/root/bin/
 # Control/operating ldap server
 ldap_manager
 
-ldap_manager ver.2.0
+ldap_manager ver.3.0
 Tue 30 Nov 2021 08:48:16 PM CET
 
 [check_root] Check permission for current session? [ok]
@@ -107,7 +105,7 @@ Tue 30 Nov 2021 08:48:16 PM CET
                         ░░                                                      ░░░░░                   
                                                                                                         
 	                                                                   
-		Info   github.io/ldap_manager ver.2.0 
+		Info   github.io/ldap_manager ver.3.0 
 		Issue  github.io/issue
 		Author vroncevic.github.io
 
@@ -133,8 +131,6 @@ Shell tool structure
 ```bash
 sh_tool/
 ├── bin/
-│   ├── center.sh
-│   ├── display_logo.sh
 │   ├── ldap_manager.sh
 │   ├── openldap_operation.sh
 │   └── openldap_version.sh
@@ -158,7 +154,7 @@ More documentation and info at
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0) [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
-Copyright (C) 2016 - 2024 by [vroncevic.github.io/ldap_manager](https://vroncevic.github.io/ldap_manager)
+Copyright (C) 2016 - 2026 by [vroncevic.github.io/ldap_manager](https://vroncevic.github.io/ldap_manager)
 
 **ldap_manager** is free software; you can redistribute it and/or modify
 it under the same terms as Bash itself, either Bash version 4.2.47 or,
