@@ -88,7 +88,7 @@ export PATH=${PATH}:/root/bin/
 ldap_manager
 
 ldap_manager ver.3.0
-Tue 30 Nov 2021 08:48:16 PM CET
+Sat Dec 13 08:27:52 AM CET 2025
 
 [check_root] Check permission for current session? [ok]
 [check_root] Done
